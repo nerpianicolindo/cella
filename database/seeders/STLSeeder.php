@@ -2,18 +2,19 @@
 
 namespace Database\Seeders;
 
+use App\Models\STL;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class DatabaseSeeder extends Seeder
+class STLSeeder extends Seeder
 {
     /**
-     * Seed the application's database.
+     * Run the database seeds.
      *
      * @return void
      */
     public function run()
     {
-        $this->call(CasoSeeder::class);
+        STL::factory(10)->create();
     }
 }

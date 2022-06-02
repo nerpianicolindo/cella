@@ -2,18 +2,19 @@
 
 namespace Database\Seeders;
 
+use App\Models\Modelo;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class DatabaseSeeder extends Seeder
+class ModeloSeeder extends Seeder
 {
     /**
-     * Seed the application's database.
+     * Run the database seeds.
      *
      * @return void
      */
     public function run()
     {
-        $this->call(CasoSeeder::class);
+        Modelo::factory(10)->create();
     }
 }
