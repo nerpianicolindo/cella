@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('casos', function (Blueprint $table) {
-            $table->uuid('ID_CASO')->primary();
+            $table->id()->autoIncrement();
             $table->longText('trazabilidad_hospital');
             $table->timestamps();
             $table->softDeletes();

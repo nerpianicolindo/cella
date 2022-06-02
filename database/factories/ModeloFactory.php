@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use App\Models\Caso;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
 /**
@@ -19,9 +20,11 @@ class ModeloFactory extends Factory
     public function definition()
     {
         return [
-            'ID_MODELO' => Str::uuid(),
-            'ID_CASO' => function (array $attributes) {
-                return Caso::find($attributes['ID_CASO'])->ID_CASO;
+            'ID_CASO' => function () {
+                $caso = DB::table('casos')->inRandomOrder()
+                ->limit(1)
+                ->get();
+                return $caso[0]->id;
             },
             'nombre' => $this->faker->name(),
             'tipo' => rand(1,5),

@@ -18,7 +18,6 @@ class CasoFactory extends Factory
     public function definition()
     {
         return [
-            'ID_CASO' => Str::uuid(),
             'trazabilidad_hospital' => $this->faker->sentence()
         ];
     }

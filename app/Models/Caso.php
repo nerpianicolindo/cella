@@ -2,20 +2,19 @@
 
 namespace App\Models;
 
-use App\Traits\Uuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Caso extends Model
 {
-    use HasFactory, SoftDeletes, Uuids;
+    use HasFactory, SoftDeletes;
 
-    protected $primaryKey = 'ID_CASO';
+    protected $primaryKey = 'id';
 
 
     public function modelos()
     {
-        return $this->hasMany(Modelo::class, 'ID_CASO', 'ID_CASO');
+        return $this->hasMany(Modelo::class, 'id', 'ID_CASO');
     }
 }

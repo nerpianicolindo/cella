@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use App\Models\Modelo;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
 /**
@@ -19,9 +20,11 @@ class STLFactory extends Factory
     public function definition()
     {
         return [
-            'ID_STL' => Str::uuid(),
             'ID_MODELO' => function (array $attributes) {
-                return Modelo::find($attributes['ID_MODELO'])->ID_MODELO;
+                $modelo = DB::table('modelos')->inRandomOrder()
+                ->limit(1)
+                ->get();
+                return $modelo[0]->id;
             },
             'nombre' => $this->faker->name(),
             'color'  => $this->faker->hexColor(),

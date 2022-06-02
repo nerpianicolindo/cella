@@ -11,8 +11,10 @@
         "laravel/framework": "^9.11",
         "laravel/sanctum": "^2.14.1",
         "laravel/tinker": "^2.7",
+        "laravel/ui": "^3.4",
         "league/mime-type-detection": "^1.11",
-        "ramsey/uuid": "^4.3"
+        "ramsey/uuid": "^4.3",
+        "select2/select2": "^4.0"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",

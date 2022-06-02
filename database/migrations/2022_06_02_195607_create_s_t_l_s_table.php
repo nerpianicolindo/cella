@@ -14,8 +14,8 @@ return new class extends Migration
     public function up()
     {
         Schema::create('s_t_l_s', function (Blueprint $table) {
-            $table->uuid('ID_STL')->primary();
-            $table->uuid('ID_MODELO');
+            $table->id()->autoIncrement();
+            $table->unsignedBigInteger('ID_MODELO');
             $table->string('nombre');
             $table->string('color');
             $table->boolean('visible')->default(1);
@@ -24,7 +24,7 @@ return new class extends Migration
             $table->timestamps();
             $table->softDeletes();
 
-            $table->foreign('ID_MODELO')->references('ID_MODELO')->on('modelos')->onDelete('cascade');
+            $table->foreign('ID_MODELO')->references('id')->on('modelos')->onDelete('cascade');
 
         });
     }
