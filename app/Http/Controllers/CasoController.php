@@ -15,7 +15,8 @@ class CasoController extends Controller
      */
     public function index()
     {
-        //
+        $casos = Caso::all();
+        return view('inicio', compact('casos'));
     }
 
     /**
@@ -25,7 +26,7 @@ class CasoController extends Controller
      */
     public function create()
     {
-        //
+        return view('casos.create');
     }
 
     /**
@@ -36,7 +37,8 @@ class CasoController extends Controller
      */
     public function store(StoreCasoRequest $request)
     {
-        //
+        Caso::create($request->all());
+        return redirect()->route('dashboard')->with('success', 'Caso creado');
     }
 
     /**
@@ -81,6 +83,16 @@ class CasoController extends Controller
      */
     public function destroy(Caso $caso)
     {
-        //
+        $modelos = $caso->modelos;
+        foreach($modelos as $modelo){
+            $stls = $modelo->stls;
+            foreach($stls as $stl) {
+                $stl->delete();
+            }
+            $modelo->delete();
+        }
+        $caso->delete();
+        return redirect()->route('dashboard')
+            ->with('success','El caso con id ' . $caso->id . ' ha sido eliminado');
     }
 }

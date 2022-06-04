@@ -17,8 +17,8 @@ class CasoSeeder extends Seeder
      */
     public function run()
     {
-        Caso::factory(3)
-            ->has(Modelo::factory(10)->has(STL::factory(15)))
+        Caso::factory(20)
+            ->has(Modelo::factory(3)->has(STL::factory(15)))
             ->create();
     }
 }

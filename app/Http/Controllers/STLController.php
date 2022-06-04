@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\STL;
 use App\Http\Requests\StoreSTLRequest;
 use App\Http\Requests\UpdateSTLRequest;
+use Illuminate\Http\Request;
 
 class STLController extends Controller
 {
@@ -23,9 +24,10 @@ class STLController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $modelo = $request->modelo;
+        return view('stls.create', compact('modelo'));
     }
 
     /**
@@ -36,7 +38,8 @@ class STLController extends Controller
      */
     public function store(StoreSTLRequest $request)
     {
-        //
+        STL::create($request->all());
+        return redirect()->route('modelos.edit', $request->ID_MODELO)->with('success', 'STL creado');
     }
 
     /**
@@ -56,9 +59,9 @@ class STLController extends Controller
      * @param  \App\Models\STL  $sTL
      * @return \Illuminate\Http\Response
      */
-    public function edit(STL $sTL)
+    public function edit(STL $stl)
     {
-        //
+        return view('stls.edit', compact('stl'));
     }
 
     /**
@@ -68,9 +71,10 @@ class STLController extends Controller
      * @param  \App\Models\STL  $sTL
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateSTLRequest $request, STL $sTL)
+    public function update(UpdateSTLRequest $request, STL $stl)
     {
-        //
+        $stl->update($request->all());
+        return redirect()->route('modelos.edit', $request->ID_MODELO)->with('success', 'STL Modificado');
     }
 
     /**
@@ -79,8 +83,10 @@ class STLController extends Controller
      * @param  \App\Models\STL  $sTL
      * @return \Illuminate\Http\Response
      */
-    public function destroy(STL $sTL)
+    public function destroy(STL $stl)
     {
-        //
+        $stl->delete();
+        return redirect()->route('modelos.edit', $stl->ID_MODELO)
+            ->with('success','El STL con id ' . $stl->id . ' ha sido eliminado');
     }
 }

@@ -12,8 +12,17 @@ class Modelo extends Model
 
     protected $primaryKey = 'id';
 
+    protected $fillable = [
+        'id', 'ID_CASO', 'nombre', 'tipo', 'created_at'
+    ];
+
+    public function caso()
+    {
+        return $this->belongsTo(Caso::class, 'id', 'ID_CASO');
+    }
+
     public function stls()
     {
-        return $this->hasMany(STL::class, 'id', 'ID_MODELO');
+        return $this->hasMany(STL::class, 'ID_MODELO', 'id');
     }
 }

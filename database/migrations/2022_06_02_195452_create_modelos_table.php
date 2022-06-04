@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id()->autoIncrement();
             $table->unsignedBigInteger('ID_CASO');
             $table->string('nombre');
-            $table->enum('tipo', array('Hepático', 'Pancreático', 'Colorrectal', 'Tiroides', 'Otro'));
+            $table->enum('tipo', array('HepÃ¡tico', 'PancreÃ¡tico', 'Colorrectal', 'Tiroides', 'Otro'));
             $table->timestamps();
             $table->softDeletes();
 

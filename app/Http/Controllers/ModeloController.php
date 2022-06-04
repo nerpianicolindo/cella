@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Modelo;
 use App\Http\Requests\StoreModeloRequest;
 use App\Http\Requests\UpdateModeloRequest;
+use Illuminate\Http\Request;
 
 class ModeloController extends Controller
 {
@@ -23,9 +24,10 @@ class ModeloController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $caso = $request->caso;
+        return view('modelos.create', compact('caso'));
     }
 
     /**
@@ -36,7 +38,8 @@ class ModeloController extends Controller
      */
     public function store(StoreModeloRequest $request)
     {
-        //
+        Modelo::create($request->all());
+        return redirect()->route('dashboard')->with('success', 'Modelo creado');
     }
 
     /**
@@ -58,7 +61,7 @@ class ModeloController extends Controller
      */
     public function edit(Modelo $modelo)
     {
-        //
+        return view('modelos.inicio', compact('modelo'));
     }
 
     /**

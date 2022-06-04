@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\CasoController;
+use App\Http\Controllers\ModeloController;
+use App\Http\Controllers\STLController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,9 +16,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-Route::get('/prueba', function () {
-    return view('prueba');
-});
+Route::get('/', [CasoController::class, 'index'])->name('dashboard');
+Route::resource('casos', CasoController::class);
+Route::resource('modelos', ModeloController::class);
+Route::resource('stls', STLController::class);
+
+Route::get('/modelos/create/{caso}', [ModeloController::class, 'create'])->name('modelos.create2');
+Route::get('/stls/create/{modelo}', [STLController::class, 'create'])->name('stls.create2');

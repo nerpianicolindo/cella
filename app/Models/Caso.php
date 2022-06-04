@@ -12,9 +12,13 @@ class Caso extends Model
 
     protected $primaryKey = 'id';
 
+    protected $fillable = [
+        'id', 'trazabilidad_hospital', 'created_at'
+    ];
+
 
     public function modelos()
     {
-        return $this->hasMany(Modelo::class, 'id', 'ID_CASO');
+        return $this->hasMany(Modelo::class, 'ID_CASO', 'id');
     }
 }
