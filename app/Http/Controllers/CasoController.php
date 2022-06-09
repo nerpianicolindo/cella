@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Caso;
 use App\Http\Requests\StoreCasoRequest;
 use App\Http\Requests\UpdateCasoRequest;
+use Illuminate\Http\Request;
 
 class CasoController extends Controller
 {
@@ -94,5 +95,18 @@ class CasoController extends Controller
         $caso->delete();
         return redirect()->route('dashboard')
             ->with('success','El caso con id ' . $caso->id . ' ha sido eliminado');
+    }
+
+    public function idsDisponibles()
+    {
+        $ids = Caso::select('id')->get();
+        return response()->json($ids);
+    }
+
+    public function withModels(Request $request)
+    {
+        $caso = Caso::where('id', '=', $request->id)
+        ->with('modelos')->first();
+        return response()->json(array('modelos' => $caso->modelos));
     }
 }

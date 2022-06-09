@@ -16,6 +16,10 @@ class Modelo extends Model
         'id', 'ID_CASO', 'nombre', 'tipo', 'created_at'
     ];
 
+    protected $hidden = [
+        'updated_at', 'deleted_at'
+    ];
+
     public function caso()
     {
         return $this->belongsTo(Caso::class, 'id', 'ID_CASO');
